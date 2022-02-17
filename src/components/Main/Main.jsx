@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Grid } from '@mui/material';
-import LeftSide from '../LeftSide.js/LeftSide';
-import RightSide from '../RightSide/RightSide';
+import { Container, Grid, TextField } from '@mui/material';
+import SignupForm from '../SignupForm/SignupForm';
 
-function Main({ className, ...rest }) {
+function Main({ className, onUserSignup, ...rest }) {
   return (
     <main>
       <Container
@@ -12,8 +11,58 @@ function Main({ className, ...rest }) {
         {...rest}
       >
         <Grid container spacing={2} justifyContent="center">
-          <LeftSide />
-          <RightSide />
+          <Grid
+            item
+            className="leftside className"
+            {...rest}
+            xs={12}
+            sm={6}
+          >
+            <Container>
+              <SignupForm onUserSignup={onUserSignup} />
+            </Container>
+          </Grid>
+          <Grid
+            item
+            className={`rightside ${className}`}
+            {...rest}
+            xs={12}
+            sm={6}
+            mt={4}
+          >
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                display: 'flex', justifyContent: 'center', alignItems: 'center',
+              }}
+            >
+              <Grid item>
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Server Response"
+                  multiline
+                  rows={20}
+                  defaultValue="Default Value"
+                  color="secondary"
+                  disabled
+                  sm={12}
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Cookies"
+                  multiline
+                  rows={20}
+                  defaultValue="Default Value"
+                  color="secondary"
+                  sm={12}
+                  disabled
+                />
+              </Grid>
+            </Grid>
+          </Grid>
         </Grid>
       </Container>
     </main>
@@ -22,6 +71,7 @@ function Main({ className, ...rest }) {
 
 Main.propTypes = {
   className: PropTypes.string,
+  onUserSignup: PropTypes.func.isRequired,
 };
 Main.defaultProps = {
   className: '',

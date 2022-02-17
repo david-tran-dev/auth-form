@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Avatar, Box, Button, Checkbox, CssBaseline, FormControlLabel, Grid, Link, TextField, Typography,
@@ -6,10 +6,25 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 function SignupForm({
-  className,
+  className, onUserSignup,
 }) {
-  const handleSubmit = () => {
+  const [emailValue, SetEmailValue] = useState('');
+  const [passwordValue, SetPasswordValue] = useState('');
 
+  const handleInputChange = (name, value) => {
+    if (value === '') {
+      return;
+    }
+    if (name === 'email') {
+      SetEmailValue(value);
+    }
+    if (name === 'password') {
+      SetPasswordValue(value);
+    }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onUserSignup(emailValue, passwordValue);
   };
 
   return (
@@ -40,6 +55,8 @@ function SignupForm({
             name="email"
             autoComplete="email"
             autoFocus
+            value={emailValue}
+            onChange={(e) => handleInputChange('email', e.target.value)}
           />
           <TextField
             margin="normal"
@@ -50,6 +67,8 @@ function SignupForm({
             type="password"
             id="password"
             autoComplete="current-password"
+            value={passwordValue}
+            onChange={(e) => handleInputChange('password', e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -85,6 +104,7 @@ function SignupForm({
 
 SignupForm.propTypes = {
   className: PropTypes.string,
+  onUserSignup: PropTypes.func.isRequired,
 };
 SignupForm.defaultProps = {
   className: '',

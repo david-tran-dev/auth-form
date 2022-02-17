@@ -23,6 +23,10 @@ function Footer({ className, ...rest }) {
   );
 }
 
+Footer.propTypes = {
+  className: PropTypes.string,
+};
+
 Footer.defaultProps = {
   className: '',
 };
