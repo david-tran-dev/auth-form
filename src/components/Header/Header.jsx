@@ -1,30 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import { Container } from '@mui/material';
+import {
+  AppBar, Button, Container, CssBaseline, Toolbar, Typography,
+} from '@mui/material';
 
 function Header({ className, ...rest }) {
   return (
-    <Container
-      className={className}
-      {...rest}
-    >
-      <Box sx={{ flexGrow: 1 }}>
+    <>
+      <CssBaseline />
+      <Container
+        className={className}
+        {...rest}
+      >
         <AppBar position="static" color="secondary">
           <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              JWT authentification Form
+            <Typography variant="h6" sx={{ flexGrow: 1 }} align="center">
+              JWT Authentication Form
             </Typography>
             <Button color="inherit">Login</Button>
             <Button color="inherit">Signup</Button>
           </Toolbar>
         </AppBar>
-      </Box>
-    </Container>
+      </Container>
+    </>
   );
 }
 

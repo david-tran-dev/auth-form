@@ -1,13 +1,14 @@
-import './App.css';
 import React from 'react';
+import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
-import InputForm from '../InputForm/InputForm';
+import Main from '../Main/Main';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <InputForm />
+      <Main />
+      <Footer />
     </div>
   );
 }
