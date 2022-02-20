@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { Container, Grid, TextField } from '@mui/material';
 import SignupForm from '../SignupForm/SignupForm';
 
-function Main({ className, onUserSignup, ...rest }) {
+function Main({
+  className, onUserSignup, emailError, passwordError, ...rest
+}) {
   return (
     <main>
       <Container
         className="main className"
-        {...rest}
       >
         <Grid container spacing={2} justifyContent="center">
           <Grid
@@ -19,7 +20,12 @@ function Main({ className, onUserSignup, ...rest }) {
             sm={6}
           >
             <Container>
-              <SignupForm onUserSignup={onUserSignup} />
+              <SignupForm
+                onUserSignup={onUserSignup}
+                emailError={emailError}
+                passwordError={passwordError}
+                {...rest}
+              />
             </Container>
           </Grid>
           <Grid
@@ -72,8 +78,12 @@ function Main({ className, onUserSignup, ...rest }) {
 Main.propTypes = {
   className: PropTypes.string,
   onUserSignup: PropTypes.func.isRequired,
+  emailError: PropTypes.string,
+  passwordError: PropTypes.string,
 };
 Main.defaultProps = {
   className: '',
+  emailError: '',
+  passwordError: '',
 };
 export default React.memo(Main);

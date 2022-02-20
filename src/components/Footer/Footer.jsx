@@ -10,7 +10,7 @@ function Footer({ className, ...rest }) {
 
     >
       <Container sx={{ position: 'fixed', bottom: '0' }}>
-        <Typography variant="body2" color="text.secondary" align="center" mb={6}>
+        <Typography variant="body2" color="text.secondary" align="center" mb={4}>
           {'Copyright © '}
           <Link color="inherit" href="#">
             JWT Authentication

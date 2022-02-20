@@ -6,7 +6,7 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 function SignupForm({
-  className, onUserSignup,
+  className, onUserSignup, emailError, passwordError,
 }) {
   const [emailValue, SetEmailValue] = useState('');
   const [passwordValue, SetPasswordValue] = useState('');
@@ -26,7 +26,6 @@ function SignupForm({
     e.preventDefault();
     onUserSignup(emailValue, passwordValue);
   };
-
   return (
     <>
       <CssBaseline />
@@ -47,9 +46,14 @@ function SignupForm({
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
+            {...(emailError.length > 0 ? {
+              error: true,
+              helperText: emailError,
+            } : {})}
             margin="normal"
             required
             fullWidth
+            color="secondary"
             id="email"
             label="Email Address"
             name="email"
@@ -59,6 +63,10 @@ function SignupForm({
             onChange={(e) => handleInputChange('email', e.target.value)}
           />
           <TextField
+            {...(passwordError.length > 0 ? {
+              error: true,
+              helperText: passwordError,
+            } : {})}
             margin="normal"
             required
             fullWidth
@@ -66,6 +74,7 @@ function SignupForm({
             label="Password"
             type="password"
             id="password"
+            color="secondary"
             autoComplete="current-password"
             value={passwordValue}
             onChange={(e) => handleInputChange('password', e.target.value)}
@@ -105,8 +114,12 @@ function SignupForm({
 SignupForm.propTypes = {
   className: PropTypes.string,
   onUserSignup: PropTypes.func.isRequired,
+  emailError: PropTypes.string,
+  passwordError: PropTypes.string,
 };
 SignupForm.defaultProps = {
   className: '',
+  emailError: '',
+  passwordError: '',
 };
 export default React.memo(SignupForm);
